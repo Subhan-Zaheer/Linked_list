@@ -22,7 +22,7 @@ public:
 };
 void linkList::display() {
 	node* temp = head;
-	while (temp->next != NULL) {
+	while (temp != NULL) {
 		cout << temp->data << "->";
 		temp = temp->next;
 	}
@@ -40,8 +40,7 @@ int linkList::insert(int num) {
 
 			temp = temp->next;
 		}
-		temp->data = newNode->data;
-		temp->next= newNode;
+		temp->next = newNode;
 	}
 	return 0;
 }
