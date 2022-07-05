@@ -17,9 +17,24 @@ public:
 	linkList() {
 		head = NULL;
 	}
+	int insertatHead(int num);
 	int insert(int num);
 	void display();
 };
+int linkList::insertatHead(int num) {
+	node* newNode = new node;
+	newNode->data = num;
+	newNode->next = NULL;
+	node* temp = head;
+	if (head == NULL) {
+		head = newNode;
+	}
+	else if (head != NULL) {
+		newNode->next = temp;
+		head = newNode;
+	}
+	return 1;
+}
 void linkList::display() {
 	node* temp = head;
 	while (temp != NULL) {
@@ -52,6 +67,9 @@ int main() {
 	l1.insert(2);
 	l1.insert(3);
 	l1.insert(4);
+	l1.display();
+	cout << endl;
+	l1.insertatHead(0);
 	l1.display();
 	
 	return 0;
