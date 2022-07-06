@@ -24,6 +24,20 @@ public:
 };
 int linkList::insertat_Index(int index, int num) {
 	int counter = 0;
+	node* newNode = new node;
+	newNode->data = num;
+	newNode->next = NULL;
+	node* temp = head;
+	if (index == 0)
+		insert(num);
+	else {
+		for (int i = 0; i < index - 1; i++) {
+			temp = temp->next;
+		}
+		newNode->next = temp->next;
+		temp->next = newNode;
+	}
+	return 1;
 }
 int linkList::insertatHead(int num) {
 	node* newNode = new node;
@@ -74,6 +88,8 @@ int main() {
 	l1.display();
 	cout << endl;
 	l1.insertatHead(0);
+	l1.display();
+	l1.insertat_Index(2, 2);
 	l1.display();
 	
 	return 0;
