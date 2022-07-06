@@ -19,8 +19,12 @@ public:
 	}
 	int insertatHead(int num);
 	int insert(int num);
+	int insertat_Index(int index, int num);
 	void display();
 };
+int linkList::insertat_Index(int index, int num) {
+	int counter = 0;
+}
 int linkList::insertatHead(int num) {
 	node* newNode = new node;
 	newNode->data = num;
