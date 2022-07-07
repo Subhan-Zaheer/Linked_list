@@ -20,9 +20,37 @@ public:
 	int insertatHead(int num);
 	int insert(int num);
 	int insertat_Index(int index, int num);
+	int delete_head();
 	int delete_byval(int num);
+	int delete_byindex(int index);
 	void display();
 };
+
+
+int linkList::delete_head() {
+	node* temp = head;
+	head = head->next;
+	delete temp;
+	return 1;
+}
+int linkList::delete_byindex(int index) {
+	if (index == 0) {
+		delete_head();
+		return 1;
+	}
+	else {
+		bool found = false;
+		node* temp = head;
+		node* temp1 = nullptr;
+		for (int i = 0; i < index - 1; i++) {
+			temp = temp->next;
+		}
+		temp1 = temp->next;
+		temp->next = temp->next->next;
+		delete temp1;
+		return 1;
+	}
+}
 int linkList::delete_byval(int num) {
 
 	node* temp = head;
@@ -122,15 +150,28 @@ int main() {
 	l1.insert(2);
 	l1.insert(3);
 	l1.insert(4);
+	l1.insert(5);
+	l1.insert(6);
 	l1.display();
 	cout << endl;
+	cout << "Inserting 0 at head." << endl;
 	l1.insertatHead(0);
 	l1.display();
 	cout << endl;
+	cout << "Inserting 2 at index 2." << endl;
 	l1.insertat_Index(2, 2);
 	l1.display();
 	cout << endl;
+	cout << "Deleting value 6." << endl;
 	l1.delete_byval(6);
+	l1.display();
+	cout << endl;
+	cout << "Deleting head." << endl;
+	l1.delete_head();
+	l1.display();
+	cout << endl;
+	cout << "Deleting value at index 2." << endl;
+	l1.delete_byindex(2);
 	l1.display();
 	cout << endl;
 
