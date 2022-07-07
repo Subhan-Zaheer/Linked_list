@@ -20,13 +20,16 @@ public:
 	int insertatHead(int num);
 	int insert(int num);
 	int insertat_Index(int index, int num);
+	int update_byIndex(int index, int num);
 	int delete_head();
 	int delete_byval(int num);
 	int delete_byindex(int index);
 	void display();
 };
 
-
+int linkList::update_byIndex(int index, int num) {
+	
+}
 int linkList::delete_head() {
 	node* temp = head;
 	head = head->next;
