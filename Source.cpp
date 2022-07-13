@@ -28,7 +28,29 @@ public:
 };
 
 int linkList::update_byIndex(int index, int num) {
-	
+	if (index == 0) {
+		head->data = num;
+		return 1;
+	}
+	else {
+		node* temp = head;
+		int counter = 0;
+		bool flag = false;
+		while (counter < index && temp->next != NULL) {
+			if (counter == index)
+				flag = true;
+			temp = temp->next;
+			counter++;
+		}
+		if (flag == false) {
+			cout << "\nIndex out of bound." << endl;
+			return 0;
+		}
+		else {
+			temp->data = num;
+		}
+		return 1;
+	}
 }
 int linkList::delete_head() {
 	node* temp = head;
@@ -45,8 +67,15 @@ int linkList::delete_byindex(int index) {
 		bool found = false;
 		node* temp = head;
 		node* temp1 = nullptr;
-		for (int i = 0; i < index - 1; i++) {
+		int i = 0;
+		for (; i < index - 1 && temp->next != NULL; i++) {
 			temp = temp->next;
+		}
+		if (i == index - 1 && temp->next != NULL)
+			found = true;
+		if (found == false) {
+			cout << "\nIndex out of bound. " << endl;
+			return 0;
 		}
 		temp1 = temp->next;
 		temp->next = temp->next->next;
@@ -99,8 +128,17 @@ int linkList::insertat_Index(int index, int num) {
 	if (index == 0)
 		insert(num);
 	else {
-		for (int i = 0; i < index - 1; i++) {
+		int i = 0;
+		bool found = false;
+		for (i = 0; i < index - 1 && temp->next != NULL; i++) {
 			temp = temp->next;
+		}
+		if (i == index - 1 && temp->next != NULL) {
+			found = true;
+		}
+		if (found == false) {
+			cout << "\nIndex out of bound." << endl;
+			return 0;
 		}
 		newNode->next = temp->next;
 		temp->next = newNode;
@@ -173,11 +211,14 @@ int main() {
 	l1.delete_head();
 	l1.display();
 	cout << endl;
-	cout << "Deleting value at index 2." << endl;
-	l1.delete_byindex(2);
+	cout << "Deleting value at index 210." << endl;
+	l1.delete_byindex(210);
 	l1.display();
 	cout << endl;
-
+	cout << "Updating value at index 10." << endl;
+	l1.update_byIndex(10, 78);
+	l1.display();
+	cout << endl;
 	return 0;
 }
 
